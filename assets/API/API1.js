@@ -63,7 +63,7 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
 
   let renderData = `
   <tr id="block-detail">
-      <td ><a href="TransacrionDetail.html?block_detail=${input.number}">${input.number}</a></td>
+      <td >${input.number}</td>
       <td>${input.date}</td>
       <td>${input.num_txs} transactions </td>
       <td>completed</td>
@@ -100,7 +100,8 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
         tx_fee: (resp.events[0].amount / 1e18),
         date: resp.date,
         block: resp.block_number,
-        
+        to: resp.events[1]?.destination == undefined ? "0x00000000000000000000" : resp.events[1].destination,
+        value: (resp.events[1]?.amount/ 1e18) === undefined ? 0 : (resp.events[1]?.amount/ 1e18)  
       }
     })
     console.log("queried data", data)
@@ -125,8 +126,8 @@ function displayTransactions (data) {
     <td>${data.block}</td>
     <td>${data.date}</td>
     <td><a href="blue-block-explorer-address-detail.html">${data.from.slice(0,20)}...</a></td>
-    <td><a href="blue-block-explorer-address-detail.html">0xDB65702A9b26f8a...</a></td>
-    <td>0.11 Ether</td>
+    <td><a href="blue-block-explorer-address-detail.html">${data.to.slice(0,20)}...</a></td>
+    <td>${data.value.toString().slice(0,6) === NaN.toString() ? 0 : data.value.toString().slice(0,6)} Ether</td>
     <td>${data.tx_fee.toString().slice(0,9)} </td>
   </tr>
   `
