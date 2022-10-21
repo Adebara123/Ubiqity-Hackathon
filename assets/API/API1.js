@@ -156,6 +156,24 @@ function displayTransactions (data) {
  console.log(block_value, "line 155")
 
 
+ const fetchAddressData = async function (protocol, network,address,APIKEY) {
+  try {
+    const url = new URL(`${baseURL}/v1/${protocol}/${network}/account/${address}/txs?apiKey=${APIKEY}`)
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Data not found");
+    }
+    const result = await response.json();
+    
 
+   console.log("line 169", result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+}
 
+fetchAddressData("ethereum", "mainnet","0x580B4C96e808db3Dca8674dbB9Ad79433a9B961B" , "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+
+// https://ubiquity.api.blockdaemon.com/v1/ethereum/mainnet/account/0xb646D87963Da1FB9D192Ddba775f24f33e857128/txs
 
