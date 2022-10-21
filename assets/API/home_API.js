@@ -14,3 +14,14 @@
 
 // Get the hash of all the transactions in a block
 // https://ubiquity.api.blockdaemon.com/v2/ethereum/mainnet/block/0x2444165297806ad5598e4569e5823b3df0cde3e48b346781ab632fa6cef1a0ec
+
+
+
+/* <td>${data.tx_hash}...</td>
+<td>${data.block}</td>
+<td>${data.date}</td>
+<td><a href="blue-block-explorer-address-detail.html">${data.from}...</a></td>
+<td><a href="blue-block-explorer-address-detail.html">0xDB65702A9b26f8a...</a></td>
+<td>0.11 Ether</td>
+<td>${data.tx_fee} </td>
+</tr> */
