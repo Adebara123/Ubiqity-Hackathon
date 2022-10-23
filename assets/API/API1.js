@@ -30,7 +30,7 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
       const result = await response.json();
       
   
-     console.log("line 24", result);
+    //console.log("line 24", result);
       return result;
     } catch (err) {
       console.error(err);
@@ -92,7 +92,7 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
       throw new Error("Data not found");
     }
     const result = await response.json();
-    console.log(result)
+   // console.log(result)
     const data = await result.txs.slice(0,50).map(resp => {
       return {
         from: resp.events[0].source,
@@ -104,7 +104,7 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
         value: (resp.events[1]?.amount/ 1e18) === undefined ? 0 : (resp.events[1]?.amount/ 1e18)  
       }
     })
-    console.log("queried data", data)
+   // console.log("queried data", data)
     
 
   // console.log("line 24", result.txs);
@@ -125,8 +125,8 @@ function displayTransactions (data) {
     <td><a href="TransacrionDetail.html?block_detail=${data.tx_hash}">${data.tx_hash.slice(0,20)}...</a></td>
     <td>${data.block}</td>
     <td>${data.date}</td>
-    <td><a href="blue-block-explorer-address-detail.html">${data.from.slice(0,20)}...</a></td>
-    <td><a href="blue-block-explorer-address-detail.html">${data.to.slice(0,20)}...</a></td>
+    <td><a href="blue-block-explorer-address-detail.html?address_details=${data.from}">${data.from.slice(0,20)}...</a></td>
+    <td><a href="blue-block-explorer-address-detail.html?address_details=${data.to}">${data.to.slice(0,20)}...</a></td>
     <td>${data.value.toString().slice(0,6) === NaN.toString() ? 0 : data.value.toString().slice(0,6)} Ether</td>
     <td>${data.tx_fee.toString().slice(0,9)} </td>
   </tr>
@@ -138,12 +138,12 @@ function displayTransactions (data) {
 
  async function transactionDataResult() {
 
-  try {
-
-    const data = await getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
-    data.map(res => displayTransactions(res))
+    try {
     
-  } catch (error) {
+      const data = await getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+      data.map(res => displayTransactions(res))
+      
+    } catch (error) {
     
   }
   
@@ -153,7 +153,9 @@ function displayTransactions (data) {
 
 
  let block_value = params.block_detail
+ let address_value = params.address_details
  console.log(block_value, "line 155")
+ console.log(address_value, "line 158")
 
 
  const fetchAddressData = async function (protocol, network,address,APIKEY) {
@@ -166,14 +168,88 @@ function displayTransactions (data) {
     const result = await response.json();
     
 
-   console.log("line 169", result);
+  console.log("line 169", result);
     return result;
   } catch (err) {
     console.error(err);
   }
 }
 
-fetchAddressData("ethereum", "mainnet","0x580B4C96e808db3Dca8674dbB9Ad79433a9B961B" , "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+fetchAddressData("ethereum", "mainnet",  address_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
 
-// https://ubiquity.api.blockdaemon.com/v1/ethereum/mainnet/account/0xb646D87963Da1FB9D192Ddba775f24f33e857128/txs
 
+const fetchAddressBalance = async function (protocol, network,address,APIKEY) {
+  try {
+    const url = new URL(`${baseURL}/v1/${protocol}/${network}/account/${address}?apiKey=${APIKEY}`)
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Data not found");
+    }
+    const result = await response.json();
+    const res = await (result[0].confirmed_balance) / 1e18;
+    
+
+  console.log("line 191", res);
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
+
+
+
+//balanceData, transactionData
+
+function displayAddessBalance (balanceData) {
+  let balanceContainer = document.getElementById("addressBalance")
+  
+  let renderAddress = `
+  <tr>
+      <td><strong>Address</strong></td>
+      <td>${address_value}</td>
+   </tr>
+   <tr>
+      <td><strong>Balance</strong></td>
+      <td>${balanceData} Ether</td>
+   </tr>
+   <tr>
+     <td><strong>Value</strong></td>
+      <td>$2,357.27</td>
+   </tr>
+  `
+  balanceContainer.innerHTML += renderAddress;
+  
+  
+  let transactionContainer = document.getElementById("addressTransaction")
+  let renderTransaction = `
+  <tr>
+      <td>0x398beb396d5a5aa...</td>
+  <td>Transfer</td>
+      <td>166625</td>
+      <td>26 mins ago (sep-14-2022)</td>
+      <td><a href="blue-block-explorer-address-detail.html">0x6d83b25142ed37f...</a></td>
+      <td><a href="blue-block-explorer-address-detail.html">0x64acf4bd261e264...</a></td>
+      <td>0.0023 Ether</td>
+      <td>4.2331256</td>
+  </tr>
+      `
+      transactionContainer.innerHTML += renderTransaction;
+    }
+
+
+
+async function addressDataResult() {
+  
+  try {
+      const balance = await fetchAddressBalance("ethereum", "mainnet",  address_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+      displayAddessBalance(balance)
+
+    } catch (error) {
+    
+    }
+
+}
+
+addressDataResult()
