@@ -30,7 +30,11 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
       const result = await response.json();
       
   
+<<<<<<< HEAD
     console.log("line 24", result);
+=======
+   //   console.log("line 24", result);
+>>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
       return result;
     } catch (err) {
       console.error(err);
@@ -63,18 +67,18 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
 
   let renderData = `
   <tr id="block-detail">
-      <td >${input.number}</td>
+      <td ><a href="blue-block-explorer-rich-list.html?block_number=${input.number}">${input.number}</a></td>
       <td>${input.date}</td>
       <td>${input.num_txs} transactions </td>
       <td>completed</td>
-      <td><a href="blue-block-explorer-rich-list.html?block_txn=${input.parent_id}">${input.parent_id.toString().slice(0,20)}...</a></td>
-      <td><a href="blue-block-explorer-rich-list.html?block_txn=${input.id}">${input.id.toString().slice(0,20)}</a></td>
+      <td><a href="blue-block-explorer-address-detail.html">${input.parent_id}</a></td>
+      <td><a href="blue-block-explorer-rich-list.html?block_txn=${input.id}">${input.id}</a></td>
   </tr>
   `
   blockContainer.innerHTML += renderData;
  }
  
-// Transfer value to next page
+
  const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (seachParams, prop) => seachParams.get(prop),
  })
@@ -82,7 +86,6 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
  let txn_value = params.block_txn
  console.log(txn_value, "line 94")
 
- 
 
  const getBlockTransactions = async function (protocol, network,txnHash,APIKEY) {
   try {
@@ -92,7 +95,11 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
       throw new Error("Data not found");
     }
     const result = await response.json();
+<<<<<<< HEAD
   //  console.log(result)
+=======
+    console.log(result)
+>>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
     const data = await result.txs.slice(0,50).map(resp => {
       return {
         from: resp.events[0].source,
@@ -100,11 +107,14 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
         tx_fee: (resp.events[0].amount / 1e18),
         date: resp.date,
         block: resp.block_number,
-        to: resp.events[1]?.destination == undefined ? "0x00000000000000000000" : resp.events[1].destination,
-        value: (resp.events[1]?.amount/ 1e18) === undefined ? 0 : (resp.events[1]?.amount/ 1e18)  
+        
       }
     })
+<<<<<<< HEAD
    console.log("queried data", data)
+=======
+    console.log("queried data", data)
+>>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
     
 
   // console.log("line 24", result.txs);
@@ -113,44 +123,41 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
     console.error(err);
   }
 }
-// getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
 
 
 
-function displayTransactions (data) {
+function displayTransactions () {
   let transactionContainer = document.getElementById("transactionDetail")
 
   let renderData = `
   <tr>
-    <td><a href="TransacrionDetail.html?block_detail=${data.tx_hash}">${data.tx_hash.slice(0,20)}...</a></td>
-    <td>${data.block}</td>
-    <td>${data.date}</td>
-    <td><a href="blue-block-explorer-address-detail.html?address_details=${data.from}">${data.from.slice(0,20)}...</a></td>
-    <td><a href="blue-block-explorer-address-detail.html?address_details=${data.to}">${data.to.slice(0,20)}...</a></td>
-    <td>${data.value.toString().slice(0,6) === NaN.toString() ? 0 : data.value.toString().slice(0,6)} Ether</td>
-    <td>${data.tx_fee.toString().slice(0,9)} </td>
-  </tr>
+  <td>0x9d013c8ef057257b949d80...</td>
+  <td>167373</td>
+  <td>26 mins ago (sep-14-2022)</td>
+  <td><a href="blue-block-explorer-address-detail.html">0x388C818CA8B9251...</a></td>
+  <td><a href="blue-block-explorer-address-detail.html">0xDB65702A9b26f8a...</a></td>
+  <td>0.11 Ether</td>
+  <td>0.0000231 </td>
+</tr>
   `
  transactionContainer.innerHTML += renderData;
  }
 
- //displayTransactions()
+
+ displayTransactions()
 
  async function transactionDataResult() {
 
-    try {
-    
-      const data = await getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
-      data.map(res => displayTransactions(res))
-      
-    } catch (error) {
-    
-  }
+
+ const data = await getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+ // console.log(data)
   
  }
 
- transactionDataResult() 
+//  transactionDataResult() 
 
+<<<<<<< HEAD
 
  let block_value = params.block_detail
  let address_value = params.address_details
@@ -474,3 +481,11 @@ async function clickTransaction () {
   }
 
   clickTransaction()
+=======
+// to: res.events[1].destination,
+// from: res.events[1].source,
+// block: res.block_number,
+// tx_hash: res.events[1].transaction_id,
+// value: amount/1e18,
+// tx_fee: (res.events[0].meta.gas_price * res.events[0].meta.gas_used) / 1e18
+>>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8

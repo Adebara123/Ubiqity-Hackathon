@@ -15,4 +15,26 @@
 // Get the hash of all the transactions in a block
 // https://ubiquity.api.blockdaemon.com/v2/ethereum/mainnet/block/0x2444165297806ad5598e4569e5823b3df0cde3e48b346781ab632fa6cef1a0ec
 
+
+console.log("ayo")
+function displayTransactions () {
+    let transactionContainer = document.getElementById("transactionDetail")
+    console.log(transactionContainer, "line 20")
+  
+    let renderData = `
+    <tr>
+              <td>0x398beb396d5a5aa...</td>
+              <td>Transfer</td>
+              <td id="result">166625</td>
+              <td>26 mins ago (sep-14-2022)</td>
+              <td><a href="blue-block-explorer-address-detail.html">0x6d83b25142ed37f...</a></td>
+              <td><a href="blue-block-explorer-address-detail.html">0x64acf4bd261e264...</a></td>
+              <td>0.0023 Ether</td>
+              <td>4.2331256</td>
+      </tr>
+    `
+   // transactionContainer.innerHTML += renderData;
+   }
+  
+   displayTransactions()
   
