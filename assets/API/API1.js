@@ -63,18 +63,22 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
 
   let renderData = `
   <tr id="block-detail">
+
       <td >${input.number}</td>
       <td>${input.date}</td>
       <td>${input.num_txs} transactions </td>
       <td>completed</td>
       <td><a href="blue-block-explorer-rich-list.html?block_txn=${input.parent_id}">${input.parent_id.toString().slice(0,20)}...</a></td>
       <td><a href="blue-block-explorer-rich-list.html?block_txn=${input.id}">${input.id.toString().slice(0,20)}</a></td>
+
   </tr>
   `
   blockContainer.innerHTML += renderData;
  }
  
+
 // Transfer value to next page
+
  const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (seachParams, prop) => seachParams.get(prop),
  })
@@ -82,7 +86,7 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
  let txn_value = params.block_txn
  console.log(txn_value, "line 94")
 
- 
+
 
  const getBlockTransactions = async function (protocol, network,txnHash,APIKEY) {
   try {
@@ -92,7 +96,11 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
       throw new Error("Data not found");
     }
     const result = await response.json();
+<<<<<<< transactionDetail
    // console.log(result)
+=======
+    console.log(result)
+>>>>>>> main
     const data = await result.txs.slice(0,50).map(resp => {
       return {
         from: resp.events[0].source,
@@ -100,12 +108,13 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
         tx_fee: (resp.events[0].amount / 1e18),
         date: resp.date,
         block: resp.block_number,
+<<<<<<< transactionDetail
         to: resp.events[1]?.destination == undefined ? "0x00000000000000000000" : resp.events[1].destination,
         value: (resp.events[1]?.amount/ 1e18) === undefined ? 0 : (resp.events[1]?.amount/ 1e18)  
       }
     })
    // console.log("queried data", data)
-    
+
 
   // console.log("line 24", result.txs);
     return data;
@@ -113,15 +122,24 @@ const fetchCurrentBlockNumber = async function (protocol, network,APIKEY) {
     console.error(err);
   }
 }
+<<<<<<< transactionDetail
 // getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
 
 
 
 function displayTransactions (data) {
+=======
+getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+
+
+
+function displayTransactions () {
+>>>>>>> main
   let transactionContainer = document.getElementById("transactionDetail")
 
   let renderData = `
   <tr>
+<<<<<<< transactionDetail
     <td><a href="TransacrionDetail.html?block_detail=${data.tx_hash}">${data.tx_hash.slice(0,20)}...</a></td>
     <td>${data.block}</td>
     <td>${data.date}</td>
@@ -133,6 +151,7 @@ function displayTransactions (data) {
   `
  transactionContainer.innerHTML += renderData;
  }
+
 
  //displayTransactions()
 
@@ -253,3 +272,24 @@ async function addressDataResult() {
 }
 
 addressDataResult()
+=======
+
+ displayTransactions()
+
+ async function transactionDataResult() {
+
+
+ const data = await getBlockTransactions("ethereum", "mainnet",txn_value, "bd1b4uvVUUl8KUHvGEscJT8K1C98kU8qSNnPFG2JcUPV0Hi")
+ // console.log(data)
+  
+ }
+
+//  transactionDataResult() 
+
+// to: res.events[1].destination,
+// from: res.events[1].source,
+// block: res.block_number,
+// tx_hash: res.events[1].transaction_id,
+// value: amount/1e18,
+// tx_fee: (res.events[0].meta.gas_price * res.events[0].meta.gas_used) / 1e18
+>>>>>>> main
