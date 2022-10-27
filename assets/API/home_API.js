@@ -16,7 +16,6 @@
 // https://ubiquity.api.blockdaemon.com/v2/ethereum/mainnet/block/0x2444165297806ad5598e4569e5823b3df0cde3e48b346781ab632fa6cef1a0ec
 
 
-
 console.log("ayo")
 function displayTransactions () {
     let transactionContainer = document.getElementById("transactionDetail")
