@@ -1,0 +1,34 @@
+.styling {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+:root {
+  --primary-color: white;
+  --secondary-color: black;
+}
+
+.dark-theme {
+  --primary-color: black;
+  --secondary-color: white;
+}
+.positioning {
+  cursor: pointer;
+  position: relative;
+  left: 50px;
+  top: 7px;
+}
+
+.Color-toggle {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+#toggler {
+  position: absolute;
+  left: 85%;
+}
+
+@media (max-width: 800px) {
+  #toggler {
+    right: 2px;
+  }
+}
