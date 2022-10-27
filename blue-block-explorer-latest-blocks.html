@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demo.tempload.com/arda-1-3/blue-block-explorer-latest-blocks.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 20:31:08 GMT -->
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Arda - Bitcoin and Cryptocurrency ICO Template</title>
-	<meta name="description" content="Arda is a Bitcoin and Cryptocurrency ICO Template by tempload." />
-	<meta name="keywords" content="bitcoin, ethereum, monero, ico, token, free token, btc, eth" />
-	<meta name="author" content="tempload"/>
+	<title>Ethereum block explorer</title>
+	
 
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="assets/images/favicon.png" />
@@ -20,6 +18,7 @@
 
 	<!-- Custom CSS -->
 	<link href="assets/css/blue44ca.css?v=1.4.0" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="assets/css/darkmode.css" />
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118135390-1"></script>
@@ -57,8 +56,7 @@
 						<ul class="nav">
 							<li><a href="blue-block-explorer.html">BLOCKCHAIN HOME</a></li>
 							<li><a href="blue-block-explorer-latest-blocks.html">LATEST BLOCKS</a></li>
-							<li><a href="blue-block-explorer-rich-list.html">Transaction List</a></li>
-							<li><a href="#" class="btn-nav-box">Connect Wallet</a></li>
+						
 						</ul>
 						<a class='menu-trigger'>
 							<span>Menu</span>
@@ -72,7 +70,7 @@
 	<!-- ***** Header Area End ***** -->
 
 	<!-- ***** Wellcome Area Start ***** -->
-	<section class="block-explorer-wrapper bg-bottom-center" id="welcome-1">
+	<section class="block-explorer-wrapper bg-bottom-center " id="welcome-1">
 		<div class="block-explorer text">
 			<div class="container text-center">
 				<div class="row">
@@ -91,8 +89,8 @@
 					<div class="col-lg-12">
 						<div class="input-wrapper">
 							<div class="input">
-								<input type="text" placeholder="block, hash, transaction, etc...">
-								<button><i class="fa fa-search"></i></button>
+								<input id="transactionHashSearch" type="text" placeholder="block, hash, transaction, etc...">
+								<button id="transactionHash_btn"><a href=""><i class="fa fa-search"></i></a></button>
 							</div>
 						</div>
 					</div>
@@ -102,7 +100,7 @@
 	</section>
 	<!-- ***** Wellcome Area End ***** -->
 
-	<section class="block-explorer-section section bg-bottom">
+	<section class="block-explorer-section section bg-bottom styling">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -112,7 +110,11 @@
 				</div>
 				<div class="offset-lg-3 col-lg-6">
 					<div class="center-text">
+<<<<<<< HEAD
 						<p>Displaying the latest block.</p>
+=======
+						<p>List of 20 latest block on the Ethereum blockchain</p>
+>>>>>>> main
 					</div>					
 				</div>
 			</div>			
@@ -144,16 +146,21 @@
 	<!-- ***** Contact & Footer Start ***** -->
 	<footer id="contact">
 		<div class="footer-bottom slim">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<p class="copyright">2022 © Arda theme by Tempload</p>
-					</div>
-				</div>
+		  <div class="positioning" id="toggler">
+			<span class="icon"> <i class="fa-solid fa-moon"></i></span>
+			<span class="theme">change theme </span>
+		  </div>
+		  <div class="container">
+			<div class="row">
+			  <div class="col-lg-12">
+				<p class="copyright">2022 © Powered by blockdeamon API</p>
+			  </div>
+			
 			</div>
+		  </div>
 		</div>
-	</footer>
-	<!-- ***** Contact & Footer End ***** -->
+	  </footer>
+	 <!-- ***** Contact & Footer End ***** -->
 
 
 	<!-- jQuery -->
@@ -169,6 +176,10 @@
 	<script src="assets/js/jquery.downCount.js"></script>
 	<script src="assets/js/parallax.min.js"></script>
 
+	<!-- Dark theme -->
+	<script src="/assets/js/darkmode.js"></script>
+
+
 	<!-- Global Init -->
 	<script src="assets/js/particle-blue.js"></script>
 	<script src="assets/js/custom.js"></script>
@@ -176,5 +187,5 @@
 		<script src="/assets/API/API1.js"></script>
 </body>
 
-<!-- Mirrored from demo.tempload.com/arda-1-3/blue-block-explorer-latest-blocks.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 07 Sep 2022 20:31:08 GMT -->
+
 </html>
