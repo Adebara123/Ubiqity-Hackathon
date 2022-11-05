@@ -77,18 +77,12 @@
 
               <!-- ***** Menu Start ***** -->
               <ul class="nav">
-                <li><a href="blue-block-explorer.html">BLOCKCHAIN HOME</a></li>
+                <li><a href="index.html">BLOCKCHAIN HOME</a></li>
                 <li>
                   <a href="blue-block-explorer-latest-blocks.html"
                     >LATEST BLOCKS</a
                   >
                 </li>
-                <li>
-                  <a href="blue-block-explorer-rich-list.html"
-                    >Transaction List</a
-                  >
-                </li>
-                <li><a href="#" class="btn-nav-box">Connect Wallet</a></li>
               </ul>
 
               <a class="menu-trigger">
@@ -111,7 +105,7 @@
               <h1>Blockchain Explorer a multichain explorer</h1>
             </div>
             <div class="offset-lg-3 col-lg-6">
-              <p>Up To Block 1883224</p>
+              <p>Up To The Genesis Block</p>
             </div>
           </div>
         </div>
@@ -123,10 +117,10 @@
               <div class="input-wrapper">
                 <div class="input">
                   <input
-                    type="text"
-                    placeholder="block, hash, transaction, etc..."
+                    type="text" id="transactionHashSearch"
+                    placeholder="block hash, address, etc..."
                   />
-                  <button><i class="fa fa-search"></i></button>
+                  <button id="transactionHash_btn"><i class="fa fa-search"></i></button>
                 </div>
               </div>
             </div>

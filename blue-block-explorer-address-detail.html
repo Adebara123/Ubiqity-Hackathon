@@ -15,6 +15,7 @@
 
 	<!-- Custom CSS -->
 	<link href="assets/css/blue44ca.css?v=1.4.0" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="assets/css/darkmode.css" />
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118135390-1"></script>
@@ -51,7 +52,7 @@
 
 						<!-- ***** Menu Start ***** -->
 						<ul class="nav">
-							<li><a href="blue-block-explorer.html">BLOCKCHAIN HOME</a></li>
+							<li><a href="index.html">BLOCKCHAIN HOME</a></li>
 							<li><a href="blue-block-explorer-latest-blocks.html">LATEST BLOCKS</a></li>
 						</ul>
 						<a class='menu-trigger'>
@@ -74,7 +75,7 @@
 						<h1>Blockchain Explorer</h1>
 					</div>
 					<div class="offset-lg-3 col-lg-6">
-						<p>Up To Block 1883224</p>
+						<p>Up To The Genesis Block</p>
 					</div>
 				</div>
 			</div>
@@ -85,8 +86,8 @@
 					<div class="col-lg-12">
 						<div class="input-wrapper">
 							<div class="input">
-								<input type="text" placeholder="block, hash, transaction, etc...">
-								<button><i class="fa fa-search"></i></button>
+								<input id="transactionHashSearch" type="text" placeholder="block, hash, transaction, etc...">
+								<button id="transactionHash_btn"><i class="fa fa-search"></i></button>
 							</div>
 						</div>
 					</div>
@@ -96,7 +97,7 @@
 	</section>
 	<!-- ***** Wellcome Area End ***** -->
 
-	<section class="block-explorer-section section bg-bottom">
+	<section class="block-explorer-section section bg-bottom styling">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -114,33 +115,13 @@
 				<div class="col-lg-9 col-md-9 col-sm-12">
 					<div class="table-responsive">
 						<table class="table table-striped table-latests table-detail">
-<<<<<<< HEAD
 							<tbody id="addressBalance">
 								
-=======
-							<tbody>
-								<tr>
-									<td><strong>Address</strong></td>
-									<td>EcGbgDMaxhEhe9spbGjhqAPuWDTcfUopQY</td>
-								</tr>
-								<tr>
-									<td><strong>Balance</strong></td>
-									<td>8.35500476 Ether</td>
-								</tr>
-								<tr>
-									<td><strong>Value</strong></td>
-									<td>$2,357.27</td>
-								</tr>
->>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<!-- <div class="col-lg-3 col-md-3 col-sm-12">
-					<div class="qr">
-						<img src="assets/images/qr.svg" class="img-fluid d-block mx-auto" alt="">
-					</div>
-				</div> -->
+	
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
@@ -170,52 +151,24 @@
 									<th>Gas Price</th>
 								</tr>
 							</thead>
-<<<<<<< HEAD
 							<tbody id="addressTransaction">
 							
 							
 
-=======
-							<tbody>
-								<tr>
-									<td>0x398beb396d5a5aa...</td>
-									<td>Transfer</td>
-									<td id="result">166625</td>
-									<td>26 mins ago (sep-14-2022)</td>
-									<td><a href="blue-block-explorer-address-detail.html">0x6d83b25142ed37f...</a></td>
-									<td><a href="blue-block-explorer-address-detail.html">0x64acf4bd261e264...</a></td>
-									<td>0.0023 Ether</td>
-									<td>4.2331256</td>
-								</tr>
-								<!-- <tr>
-									<td>29a7e2f30d424248</td>
-									<td>1862732</td>
-									<td>2018-04-12 14:16:54</td>
-									<td><span class="red">- 99,999<small>.99</small> ARD</span></td>
-									<td>8,455,004<small>.7</small> ARD</td>
-								</tr>
-								<tr>
-									<td>2f04876ba83f63d6</td>
-									<td>1837529</td>
-									<td>2018-03-23 22:12:16</td>
-									<td><span class="blue">+ 99,999<small>.99</small> ARD</span></td>
-									<td>8,555,004<small>.69</small> ARD</td>
-								</tr> --> 
-						
->>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</section>
 
 
 	<!-- ***** Contact & Footer Start ***** -->
-	<footer id="contact">
+	
+</tbody>
+<footer id="contact">
 		<div class="footer-bottom slim">
-<<<<<<< HEAD
 		  <div class="positioning" id="toggler">
 			<span class="icon"> <i class="fa-solid fa-moon"></i></span>
 			<span class="theme">change theme </span>
@@ -226,18 +179,11 @@
 				<p class="copyright">2022 © Powered by blockdeamon API</p>
 			  </div>
 			
-=======
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<p class="copyright">2021 © Arda theme by Tempload</p>
-					</div>
-				</div>
->>>>>>> 18c41382b9de1cef93164740d36a9385fc4474a8
 			</div>
+		  </div>
 		</div>
-	</footer>
-	<!-- ***** Contact & Footer End ***** -->
+	  </footer>
+	 <!-- ***** Contact & Footer End ***** -->
 
 
 	<!-- jQuery -->
@@ -257,8 +203,11 @@
 	<script src="assets/js/particle-blue.js"></script>
 	<script src="assets/js/custom.js"></script>
 
+	<!-- Dark theme -->
+	<script src="/assets/js/darkmode.js"></script>
+
 		<!-- Api calls -->
-		<script src="/assets/API/home_API.js"></script>
+		<script src="/assets/API/API1.js"></script>
 </body>
 
 </html>
